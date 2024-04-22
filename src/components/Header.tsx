@@ -28,7 +28,7 @@ export default function Header(props: HeaderProps) {
   const { title } = props;
   const [cookies] = useCookies();
   const [open, setOpen] = useState(false);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
 
@@ -58,14 +58,14 @@ export default function Header(props: HeaderProps) {
   };
   
   useEffect(() => {
-    if (!(cookies["accessToken"]) ||  !(cookies["USER"])) {
+    if (!(cookies["accessToken"])) {
       alert("로그인을 먼저 해주세요");
       setOpen(true);
     }
   }, []);
   
   useEffect(() => {
-    setUser(cookies.USER);
+    if (cookies.accessToken) setUser(true);
   });
 
   return (
@@ -89,7 +89,7 @@ export default function Header(props: HeaderProps) {
 
         {user ? (
           <Box>
-            <Button onClick={handleClick}>{`${user}님 안녕하세요`}</Button>
+            <Button onClick={handleClick}>{`환영합니다`}</Button>
             <Menu
               anchorEl={anchorEl}
               open={Boolean(anchorEl)}
