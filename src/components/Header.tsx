@@ -56,8 +56,6 @@ export default function Header(props: HeaderProps) {
     removeCookie("USER");
     navigate("/");
   };
-
-  console.log(cookies["accessToken"],cookies["USER"]);
   
   useEffect(() => {
     if (!(cookies["accessToken"]) ||  !(cookies["USER"])) {

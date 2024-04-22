@@ -68,9 +68,7 @@ export default function Home() {
       .catch((e) => {
         const response = e.response;
 
-        if (response.status === 401) {
-          alert("로그인을 먼저 해주세요");
-        }
+
       });
   }, []);
 
