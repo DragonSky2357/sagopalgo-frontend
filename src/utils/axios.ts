@@ -3,6 +3,8 @@ import { Cookies } from "react-cookie";
 
 const cookies = new Cookies();
 
+axios.defaults.withCredentials = true;
+
 export const instance = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
   headers: {
