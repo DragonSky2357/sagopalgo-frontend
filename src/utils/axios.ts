@@ -6,6 +6,7 @@ const cookies = new Cookies();
 export const instance = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,
   headers: {
+    "Access-Control-Allow-Origin": `${process.env.REACT_APP_BASE_URL}`,
     "Content-Type": "application/json",
     withCredentials: true,
   },
@@ -13,7 +14,7 @@ export const instance = axios.create({
 
 instance.interceptors.request.use((config: InternalAxiosRequestConfig<any>) => {
   const accessToken = cookies.get("accessToken");
-
+  console.log(accessToken);
   if (accessToken && config.headers) {
     config.headers["Authorization"] = `Bearer ${accessToken}`;
   }
