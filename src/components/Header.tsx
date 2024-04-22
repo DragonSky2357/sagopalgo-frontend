@@ -58,10 +58,10 @@ export default function Header(props: HeaderProps) {
   };
 
   useEffect(() => {
-    if (!(cookies["accessToken"]) ||  !(cookies["USER"])) {
-      alert("로그인을 먼저 해주세요");
-      setOpen(true);
-    }
+    // if (!(cookies["accessToken"]) ||  !(cookies["USER"])) {
+    //   alert("로그인을 먼저 해주세요");
+    //   setOpen(true);
+    // }
   }, []);
   
   useEffect(() => {

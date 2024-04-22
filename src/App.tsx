@@ -22,6 +22,7 @@ function App() {
           <Route path="/auction" element={<AuctionPage />} />
           <Route path="/payments/:paymentId" element={<PaymentSuccess />} />
           <Route path="/payment-info/:paymentId" element={<PaymentInfoPage />} />
+          <Route path="/login/oauth2/callback/kakao" element={<AuctionPage />} />
         </Routes>
       </RecoilRoot>
     </div>
