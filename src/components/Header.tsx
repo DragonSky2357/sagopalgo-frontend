@@ -57,16 +57,16 @@ export default function Header(props: HeaderProps) {
     navigate("/");
   };
   
-  useEffect(() => {
-    if (!(cookies["accessToken"])) {
-      alert("로그인을 먼저 해주세요");
-      setOpen(true);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!(cookies["accessToken"])) {
+  //     alert("로그인을 먼저 해주세요");
+  //     setOpen(true);
+  //   }
+  // }, []);
   
-  useEffect(() => {
-    if (cookies.accessToken) setUser(true);
-  });
+  // useEffect(() => {
+  //   if (cookies.accessToken) setUser(true);
+  // });
 
   return (
     <React.Fragment>

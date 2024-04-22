@@ -9,6 +9,7 @@ import { RecoilRoot } from "recoil";
 import AuctionPage from "./pages/AuctionPage";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import PaymentInfoPage from "./pages/PaymentInfoPage";
+import LoginSuccess from "./pages/LoginSuccess";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
           <Route path="/auction" element={<AuctionPage />} />
           <Route path="/payments/:paymentId" element={<PaymentSuccess />} />
           <Route path="/payment-info/:paymentId" element={<PaymentInfoPage />} />
-          <Route path="/login/oauth2/callback/kakao" element={<AuctionPage />} />
+          <Route path="/loginsuccess" element={<LoginSuccess />} />
         </Routes>
       </RecoilRoot>
     </div>
