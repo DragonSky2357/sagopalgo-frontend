@@ -57,6 +57,8 @@ export default function Header(props: HeaderProps) {
     navigate("/");
   };
 
+  console.log(cookies["accessToken"],cookies["USER"]);
+  
   useEffect(() => {
     if (!(cookies["accessToken"]) ||  !(cookies["USER"])) {
       alert("로그인을 먼저 해주세요");
