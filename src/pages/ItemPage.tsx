@@ -69,13 +69,13 @@ const ItemPage = () => {
   }, []);
 
   useEffect(() => {
-    console.log(BASE_URL);
-    // const url = `http://localhost:8081/api/v1/item/subscribe/${itemId}`
-    const url = BASE_URL+`/api/v1/item/subscribe/${itemId}`;
+    const url = `http://localhost:8081/api/v1/item/subscribe/${itemId}`
+    //const url = BASE_URL+`/api/v1/item/subscribe/${itemId}`;
     const eventSource = new EventSource(url, {
       withCredentials:true
     });
 
+    console.log(url);
     eventSource.addEventListener("itemUpdate", (event) => {
       setPrice(event.data);
       console.log(event.data);
