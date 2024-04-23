@@ -69,7 +69,7 @@ const ItemPage = () => {
   useEffect(() => {
     
     // const url = `http://localhost:8081/api/v1/item/subscribe/${itemId}`
-    const BASE_URL = process.env.REACT_APP_SSE_URL;
+    const BASE_URL = process.env.REACT_APP_SSE_URL || "http://localhost:8081";
     const url = BASE_URL+`/api/v1/item/subscribe/${itemId}`;
     const eventSource = new EventSource(url);
 
