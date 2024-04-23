@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import { instance } from "../utils/axios";
 import { useLocation } from "react-router-dom";
+import { NativeEventSource, EventSourcePolyfill } from "event-source-polyfill";
 
 interface IPost {
   id: number;
@@ -66,11 +67,9 @@ const ItemPage = () => {
   }, []);
 
   useEffect(() => {
-    const url = `${process.env.REACT_APP_SSE_URL}/api/v1/item/subscribe/${itemId}`
-    const eventSource = new EventSource(url, {
-     withCredentials:true
-
-    });
+    
+    const url = `/api/v1/item/subscribe/${itemId}`
+    const eventSource = new EventSource(url);
 
     eventSource.addEventListener("itemUpdate", (event) => {
       setPrice(event.data);
