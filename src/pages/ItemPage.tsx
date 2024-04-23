@@ -68,7 +68,8 @@ const ItemPage = () => {
 
   useEffect(() => {
     
-    const url = `http://localhost:8081/api/v1/item/subscribe/${itemId}`
+    // const url = `http://localhost:8081/api/v1/item/subscribe/${itemId}`
+    const url = `${process.env.REACT_APP_SSE_URL}/api/v1/item/subscribe/${itemId}`;
     const eventSource = new EventSource(url);
 
     eventSource.addEventListener("itemUpdate", (event) => {
