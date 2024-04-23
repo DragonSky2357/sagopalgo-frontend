@@ -66,10 +66,11 @@ const ItemPage = () => {
   }, []);
 
   useEffect(() => {
-    const eventSource = new EventSource(
-      `${process.env.REACT_APP_SSE_URL}/api/v1/item/subscribe/${itemId}`
+    const url = `${process.env.REACT_APP_SSE_URL}/api/v1/item/subscribe/${itemId}`
+    const eventSource = new EventSource(url, {
+     withCredentials:true
 
-    );
+    });
 
     eventSource.addEventListener("itemUpdate", (event) => {
       setPrice(event.data);
