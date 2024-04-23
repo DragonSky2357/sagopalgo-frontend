@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom'
 const LoginSuccess = () => {
     const navigate = useNavigate();
 
-    useEffect(() => {
+  useEffect(() => {
+    localStorage.setItem("Login", "success");
         navigate("/");
     })
   return (

@@ -26,9 +26,8 @@ const onGoogleLogin = () => {
 
 export default function Header(props: HeaderProps) {
   const { title } = props;
-  const [cookies] = useCookies();
   const [open, setOpen] = useState(false);
-  const [user, setUser] = useState(false);
+  const [login, setLogin] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
 
@@ -57,12 +56,15 @@ export default function Header(props: HeaderProps) {
     navigate("/");
   };
   
-  // useEffect(() => {
-  //   if (!(cookies["accessToken"])) {
-  //     alert("로그인을 먼저 해주세요");
-  //     setOpen(true);
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (localStorage.getItem("login") === "success") {
+      setLogin(true);
+      
+    } else {
+      alert("로그인을 먼저 해주세요");
+      setOpen(true);
+    }
+  }, []);
   
   // useEffect(() => {
   //   if (cookies.accessToken) setUser(true);
@@ -87,7 +89,7 @@ export default function Header(props: HeaderProps) {
           <SearchIcon />
         </IconButton>
 
-        {user ? (
+        {login ? (
           <Box>
             <Button onClick={handleClick}>{`환영합니다`}</Button>
             <Menu
