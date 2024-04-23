@@ -53,9 +53,7 @@ const ItemPage = () => {
   const [bid, setBid] = useState<number>(0);
   const [open, setOpen] = useState(false);
   const [data, setData] = useState("");
-  const BASE_URL = process.env.REACT_APP_SSE_URL;
 
-  
   useEffect(() => {
     instance.get(`/api/v1/items/${itemId}`).then((response) => {
       setPost(response.data);
@@ -69,7 +67,8 @@ const ItemPage = () => {
   }, []);
 
   useEffect(() => {
-    const url = `http://localhost:8081/api/v1/item/subscribe/${itemId}`
+    const BASE_URL = process.env.REACT_APP_SSE_URL || "http://localhost:8081"; 
+    const url = `${BASE_URL}/api/v1/item/subscribe/${itemId}`;
     //const url = BASE_URL+`/api/v1/item/subscribe/${itemId}`;
     const eventSource = new EventSource(url, {
       withCredentials:true
@@ -122,7 +121,7 @@ const ItemPage = () => {
       .then((response) => {
         if (response.status === 201) {
           alert("입찰 성공");
-          //window.location.reload();
+          setOpen(false);
         } 
       })
       .catch((e) => {
