@@ -80,8 +80,8 @@ const MainPostFilter: React.FC<MainPostFilterProps> = ({
                 </MenuItem>
               )}
               <MenuItem value={"가전제품"}>가전제품</MenuItem>
-              <MenuItem value={"장난감"}>장난감</MenuItem>
-              <MenuItem value={"농수산물"}>농수산물</MenuItem>
+              <MenuItem value={"의류"}>의류</MenuItem>
+              <MenuItem value={"가구"}>가구</MenuItem>
               <MenuItem value={"예술품"}>예술품</MenuItem>
               <MenuItem value={"기타"}>기타</MenuItem>
             </Select>

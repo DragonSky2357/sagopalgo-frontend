@@ -3,14 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { loggedInState } from "../context/LoginState";
 
-const LoginSuccess = () => {
+const LogoutSuccess = () => {
   const navigate = useNavigate();
   const setLoggedIn = useSetRecoilState(loggedInState);
+
   useEffect(() => {
-    setLoggedIn(true);
+    setLoggedIn(false);
     navigate("/");
   });
-  return <div>LoginSuccess</div>;
+  return <div>LogoutSuccess</div>;
 };
 
-export default LoginSuccess;
+export default LogoutSuccess;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import { Avatar, Box } from "@mui/material";
+import {  Box } from "@mui/material";
 import { instance } from "../utils/axios";
 import SuccessAuctionPost from "../components/SuccessAuctionPost";
 

@@ -7,6 +7,8 @@ import Typography from "@mui/material/Typography";
 import { Box, Menu, MenuItem, Modal } from "@mui/material";
 import { useCookies } from "react-cookie";
 import { Link, useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { loggedInState } from "../context/LoginState";
 
 interface HeaderProps {
   title: string;
@@ -27,9 +29,9 @@ const onGoogleLogin = () => {
 export default function Header(props: HeaderProps) {
   const { title } = props;
   const [open, setOpen] = useState(false);
-  const [login, setLogin] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
+  const isLoggedIn = useRecoilValue(loggedInState);
 
   const handleClick = (event: any) => {
     setAnchorEl(event.currentTarget);
@@ -39,36 +41,21 @@ export default function Header(props: HeaderProps) {
     setAnchorEl(null);
   };
 
-  function removeCookie(cookieName: string) {
-    // 현재 시간을 얻어와서 1일 전으로 설정
-    var expires = new Date();
-    expires.setHours(expires.getHours() - 24);
-
-    // 쿠키의 만료일을 이전으로 설정하여 쿠키를 제거
-    document.cookie =
-      cookieName + "=; expires=" + expires.toUTCString() + "; path=/";
-  }
-
   const handleLogout = () => {
-    removeCookie("accessToken");
-    removeCookie("refreshToken");
-    removeCookie("USER");
-    navigate("/");
+    navigate("/logoutsuccess");
   };
-  
+
+  console.log(isLoggedIn);
+
   useEffect(() => {
-    if (localStorage.getItem("login") === "success") {
-      setLogin(true);
-      
-    } else {
+    if (isLoggedIn === false) {
       alert("로그인을 먼저 해주세요");
       setOpen(true);
+    } else {
+      setOpen(false);
     }
-  }, []);
-  
-  // useEffect(() => {
-  //   if (cookies.accessToken) setUser(true);
-  // });
+  }, [isLoggedIn]);
+
 
   return (
     <React.Fragment>
@@ -89,7 +76,7 @@ export default function Header(props: HeaderProps) {
           <SearchIcon />
         </IconButton>
 
-        {login ? (
+        {isLoggedIn ? (
           <Box>
             <Button onClick={handleClick}>{`환영합니다`}</Button>
             <Menu

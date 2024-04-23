@@ -10,6 +10,7 @@ import AuctionPage from "./pages/AuctionPage";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import PaymentInfoPage from "./pages/PaymentInfoPage";
 import LoginSuccess from "./pages/LoginSuccess";
+import LogoutSuccess from "./pages/LogoutSuccess";
 
 function App() {
   return (
@@ -22,8 +23,12 @@ function App() {
           <Route path="/payment/:itemId" element={<Checkout />} />
           <Route path="/auction" element={<AuctionPage />} />
           <Route path="/payments/:paymentId" element={<PaymentSuccess />} />
-          <Route path="/payment-info/:paymentId" element={<PaymentInfoPage />} />
+          <Route
+            path="/payment-info/:paymentId"
+            element={<PaymentInfoPage />}
+          />
           <Route path="/loginsuccess" element={<LoginSuccess />} />
+          <Route path="/logoutsuccess" element={<LogoutSuccess />} />
         </Routes>
       </RecoilRoot>
     </div>
