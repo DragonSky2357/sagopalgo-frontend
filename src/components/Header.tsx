@@ -72,9 +72,7 @@ export default function Header(props: HeaderProps) {
             {title}
           </Link>
         </Typography>
-        <IconButton>
-          <SearchIcon />
-        </IconButton>
+
 
         {isLoggedIn ? (
           <Box>
