@@ -91,7 +91,7 @@ const ItemPage = () => {
   }, []);
   function decreaseRemainingTime() {
     const sixPM = new Date();
-    sixPM.setHours(21, 0, 0, 0);
+    sixPM.setHours(18, 0, 0, 0);
 
     const currentTime = new Date();
     const remainingMilliseconds = sixPM.getTime() - currentTime.getTime();
