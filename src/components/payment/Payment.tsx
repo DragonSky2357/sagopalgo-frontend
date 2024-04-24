@@ -45,7 +45,7 @@ const Payment: React.FC<IReviewProps> = ({ payment }) => {
           orderId: uuid(), // 대충 날짜를 조합하든가 uuid를 사용하는 방법도..
           orderName: payment?.itemName ?? "",
           customerName: payment?.username,
-          successUrl: `${originUrl}/payments/${payment?.id}/toss/confirm`, // ${결제 성공 후 redirect할 url}
+          successUrl: `${originUrl}/payments/${payment?.id}`, // ${결제 성공 후 redirect할 url}
           failUrl: `${originUrl}/fail`, //  ${결제 실패한 경우 redirect할 url}
         })
         .catch(function (error: any) {
