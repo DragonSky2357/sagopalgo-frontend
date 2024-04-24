@@ -6,10 +6,9 @@ import Footer from "../components/Footer";
 import MainPostFilter from "../components/MainPostFilter";
 import MainPost from "../components/MainPost";
 import { Pagination, Stack } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import { instance } from "../utils/axios";
 import AddPost from "../components/Home/AddPost";
-import { useCookies } from "react-cookie";
+
 
 const mainFeaturedPost = {
   title: "흥미진진한 거래, 가치 있는 소유물을 찾아보세요!",
