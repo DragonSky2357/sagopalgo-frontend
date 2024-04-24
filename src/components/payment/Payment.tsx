@@ -10,9 +10,6 @@ import Typography from "@mui/material/Typography";
 import { Button } from "@mui/material";
 import { loadTossPayments } from "@tosspayments/payment-sdk";
 import uuid from "react-uuid";
-import { useNavigate } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { loggedInState } from "../../context/LoginState";
 
 interface IPayment {
   id: number;

@@ -14,6 +14,9 @@ interface HeaderProps {
   title: string;
 }
 
+//const BASE_URL = process.env.REACT_APP_BASE_URL || "http://sagopalgo-elb-1738527234.ap-northeast-2.elb.amazonaws.com";
+
+
 const onKakaoLogin = () => {
   window.location.href = `${process.env.REACT_APP_BASE_URL}/oauth2/authorization/kakao`;
 };
@@ -72,7 +75,6 @@ export default function Header(props: HeaderProps) {
             {title}
           </Link>
         </Typography>
-
 
         {isLoggedIn ? (
           <Box>
