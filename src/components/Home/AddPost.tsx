@@ -13,7 +13,9 @@ const AddPost = () => {
   const [name, setName] = useState<string>("");
   const [startPrice, setStartPrice] = useState<string>("0");
   const [bidUnit, setBidUnit] = useState<string>("0");
-  const [startDate, setStartDate] = useState<Dayjs | null>(null);
+  const [startDate, setStartDate] = useState<Dayjs | null>(
+    dayjs().add(1, "day")
+  );
   const [category, setCategory] = useState("");
   const [image, setImage] = useState<any>(null);
   const [imageUrl, setImageUrl] = useState<string>("");
