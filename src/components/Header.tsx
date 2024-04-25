@@ -98,7 +98,7 @@ export default function Header(props: HeaderProps) {
                   navigate("/auction");
                 }}
               >
-                입찰 내역
+                낙찰 내역
               </MenuItem>
               <MenuItem onClick={handleLogout}>로그아웃</MenuItem>
             </Menu>
