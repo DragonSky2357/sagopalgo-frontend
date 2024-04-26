@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import SearchIcon from "@mui/icons-material/Search";
 import Typography from "@mui/material/Typography";
 import { Box, Menu, MenuItem, Modal } from "@mui/material";
 import { useCookies } from "react-cookie";

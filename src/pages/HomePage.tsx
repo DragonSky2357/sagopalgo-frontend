@@ -66,8 +66,6 @@ export default function Home() {
       })
       .catch((e) => {
         const response = e.response;
-
-
       });
   }, []);
 
@@ -107,10 +105,11 @@ export default function Home() {
   }, [selectedFilterHighLow]);
 
   const handleSearchChange = (search: string) => {
-    instance.get(`/api/v1/items/search?name=${search}`).then((response) => {
-      setPosts(response.data.content);
-      setPage(response.data.number);
-      setTotalPage(response.data.totalPages);
+    instance.get(`/api/v1/es/search/${search}`).then((response) => {
+      console.log(response.data);
+      // setPosts(response.data.content);
+      // setPage(response.data.number);
+      // setTotalPage(response.data.totalPages);
     });
   };
 
