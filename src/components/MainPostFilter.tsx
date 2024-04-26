@@ -44,7 +44,7 @@ const MainPostFilter: React.FC<MainPostFilterProps> = ({
   const [status, setStatus] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [search, setSearch] = useState<ISearch[]>([]);
-
+  const [open, setOpen] = useState(false);
   const handleSearchChange = (search: string) => {
     instance.get(`/api/v1/es/search?keyword=${search}`).then((response) => {
       console.log(response.data);
@@ -155,6 +155,9 @@ const MainPostFilter: React.FC<MainPostFilterProps> = ({
         >
           <Autocomplete
             options={search}
+            open={open}
+            onOpen={()=>setOpen(true)}
+            onClose={()=>setOpen(false)}
             getOptionLabel={(option:ISearch) => option.name}
             renderInput={(params) => (
               <InputBase
