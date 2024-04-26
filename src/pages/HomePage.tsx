@@ -39,7 +39,6 @@ interface IPost {
 }
 
 
-
 export default function Home() {
   
   const [loading, setLoading] = useState(true);
@@ -104,14 +103,7 @@ export default function Home() {
       });
   }, [selectedFilterHighLow]);
 
-  const handleSearchChange = (search: string) => {
-    instance.get(`/api/v1/es/search?keyword=${search}`).then((response) => {
-      console.log(response.data);
-      // setPosts(response.data.content);
-      // setPage(response.data.number);
-      // setTotalPage(response.data.totalPages);
-    });
-  };
+  
 
   const handleFilterChange = (filterName: string, value: string) => {
     setSelectedFilters((prevFilters) => ({
@@ -151,7 +143,6 @@ export default function Home() {
         <MainPostFilter
           onFilterChange={handleFilterChange}
           onFilterHightLowChange={handleFilterHighLowChange}
-          onSearchChange={handleSearchChange}
         />
         <Grid container spacing={4}>
           {posts.length > 0 ? (

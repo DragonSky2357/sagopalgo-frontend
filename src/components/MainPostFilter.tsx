@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Autocomplete,
   Box,
   Button,
   ButtonGroup,
@@ -13,24 +17,43 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import {useDebouncedCallback } from "use-debounce";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { instance } from "../utils/axios";
 
 interface MainPostFilterProps {
   onFilterChange: (filterName: string, value: string) => void;
   onFilterHightLowChange: (filterName: string, value: string) => void;
-  onSearchChange: (search: string) => void;
 }
+
+interface ISearch {
+  id: number;
+  name: string;
+  bidCount: number;
+  highestPrice: number;
+  status: string;
+  url: string;
+  username: string;
+  viewCount: number;
+}
+
 
 const MainPostFilter: React.FC<MainPostFilterProps> = ({
   onFilterChange,
-  onFilterHightLowChange,
-  onSearchChange,
+  onFilterHightLowChange
 }) => {
   const [status, setStatus] = useState<string>("");
   const [category, setCategory] = useState<string>("");
-  const [search, setSearch] = useState<string>("");
+  const [search, setSearch] = useState<ISearch[]>([]);
+
+  const handleSearchChange = (search: string) => {
+    instance.get(`/api/v1/es/search?keyword=${search}`).then((response) => {
+      console.log(response.data);
+      setSearch(response.data);
+    });
+  };
 
   const searchTitle = useDebouncedCallback((value) => {
-    onSearchChange(value);
+    handleSearchChange(value);
   }, 1000);
 
   return (
@@ -122,11 +145,36 @@ const MainPostFilter: React.FC<MainPostFilterProps> = ({
             </Button>
           </ButtonGroup>
         </Box>
-        <Paper component="form" style={{ height: "40px" }}>
-          <InputBase
-            placeholder="검색하기"
-            inputProps={{ "aria-label": "search" }}
-            onChange={(e) => searchTitle(e.target.value)}
+        <Paper
+          component="form"
+          style={{
+            display: "flex",
+            width: "500px",
+            justifyContent: "space-between",
+          }}
+        >
+          <Autocomplete
+            options={search}
+            getOptionLabel={(option:ISearch) => option.name}
+            renderInput={(params) => (
+              <InputBase
+                {...params}
+                placeholder="검색하기"
+                inputProps={{ "aria-label": "search" }}
+                onChange={(e) => searchTitle(e.target.value)}
+              />
+            )}
+            renderOption={(props, option) => (
+              <Accordion key={option.id}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  {option.name}
+                </AccordionSummary>
+              </Accordion>
+            )}
           />
           <IconButton type="submit" aria-label="search">
             <SearchIcon />
