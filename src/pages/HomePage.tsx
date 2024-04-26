@@ -105,7 +105,7 @@ export default function Home() {
   }, [selectedFilterHighLow]);
 
   const handleSearchChange = (search: string) => {
-    instance.get(`/api/v1/es/search/${search}`).then((response) => {
+    instance.get(`/api/v1/es/search?keyword=${search}`).then((response) => {
       console.log(response.data);
       // setPosts(response.data.content);
       // setPage(response.data.number);
