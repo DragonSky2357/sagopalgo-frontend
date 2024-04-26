@@ -53,8 +53,7 @@ const MainPostFilter: React.FC<MainPostFilterProps> = ({
   }, 1000);
 
   const handleItemClick = (option: any) => {
-    console.log(option);
-    //navigate(`/item/${option.id}`);
+    navigate(`/item/${option.id}`);
   };
 
   return (
