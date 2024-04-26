@@ -1,25 +1,18 @@
 import React, { useState } from "react";
 import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
   Autocomplete,
   Box,
   Button,
   ButtonGroup,
   FormControl,
-  IconButton,
-  InputBase,
   MenuItem,
-  Paper,
   Select,
   SelectChangeEvent,
   TextField,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
 import {useDebouncedCallback } from "use-debounce";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { instance } from "../utils/axios";
+import { useNavigate } from "react-router-dom";
 
 interface MainPostFilterProps {
   onFilterChange: (filterName: string, value: string) => void;
@@ -42,10 +35,12 @@ const MainPostFilter: React.FC<MainPostFilterProps> = ({
   onFilterChange,
   onFilterHightLowChange
 }) => {
+  const navigate = useNavigate();
   const [status, setStatus] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [search, setSearch] = useState<ISearch[]>([]);
   const [open, setOpen] = useState<boolean>(false);
+
   const handleSearchChange = (search: string) => {
     instance.get(`/api/v1/es/search?keyword=${search}`).then((response) => {
       console.log(response.data);
@@ -56,6 +51,11 @@ const MainPostFilter: React.FC<MainPostFilterProps> = ({
   const searchTitle = useDebouncedCallback((value) => {
     handleSearchChange(value);
   }, 1000);
+
+  const handleItemClick = (option: any) => {
+    console.log(option);
+    //navigate(`/item/${option.id}`);
+  };
 
   return (
     <Box>
@@ -148,10 +148,12 @@ const MainPostFilter: React.FC<MainPostFilterProps> = ({
         </Box>
 
         <Autocomplete
+          sx={{ width: "500px" }}
           options={search}
           open={open}
           onOpen={() => setOpen(true)}
           onClose={() => setOpen(false)}
+          onChange={(event, value) => handleItemClick(value)}
           getOptionLabel={(option: ISearch) => option.name}
           renderInput={(params) => (
             <TextField
