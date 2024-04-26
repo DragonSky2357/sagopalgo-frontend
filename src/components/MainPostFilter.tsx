@@ -159,6 +159,14 @@ const MainPostFilter: React.FC<MainPostFilterProps> = ({
             onOpen={()=>setOpen(true)}
             onClose={()=>setOpen(false)}
             getOptionLabel={(option:ISearch) => option.name}
+            renderInput={(params) => (
+              <InputBase
+                {...params}
+                placeholder="검색하기"
+                inputProps={{ "aria-label": "search" }}
+                onChange={(e) => searchTitle(e.target.value)}
+              />
+            )}
             renderOption={(props, option) => (
               <Accordion key={option.id}>
                 <AccordionSummary
