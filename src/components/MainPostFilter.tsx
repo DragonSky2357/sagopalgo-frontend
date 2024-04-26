@@ -14,6 +14,7 @@ import {
   Paper,
   Select,
   SelectChangeEvent,
+  TextField,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import {useDebouncedCallback } from "use-debounce";
@@ -44,7 +45,7 @@ const MainPostFilter: React.FC<MainPostFilterProps> = ({
   const [status, setStatus] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [search, setSearch] = useState<ISearch[]>([]);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
   const handleSearchChange = (search: string) => {
     instance.get(`/api/v1/es/search?keyword=${search}`).then((response) => {
       console.log(response.data);
@@ -145,44 +146,29 @@ const MainPostFilter: React.FC<MainPostFilterProps> = ({
             </Button>
           </ButtonGroup>
         </Box>
-        <Paper
-          component="form"
-          style={{
-            display: "flex",
-            width: "500px",
-            justifyContent: "space-between",
-          }}
-        >
-          <Autocomplete
-            options={search}
-            open={open}
-            onOpen={()=>setOpen(true)}
-            onClose={()=>setOpen(false)}
-            getOptionLabel={(option:ISearch) => option.name}
-            renderInput={(params) => (
-              <InputBase
-                {...params}
-                placeholder="검색하기"
-                inputProps={{ "aria-label": "search" }}
-                onChange={(e) => searchTitle(e.target.value)}
-              />
-            )}
-            renderOption={(props, option) => (
-              <Accordion key={option.id}>
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls="panel1a-content"
-                  id="panel1a-header"
-                >
-                  {option.name}
-                </AccordionSummary>
-              </Accordion>
-            )}
-          />
-          <IconButton type="submit" aria-label="search">
-            <SearchIcon />
-          </IconButton>
-        </Paper>
+
+        <Autocomplete
+          options={search}
+          open={open}
+          onOpen={() => setOpen(true)}
+          onClose={() => setOpen(false)}
+          getOptionLabel={(option: ISearch) => option.name}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label="Asynchronous"
+              onChange={(e) => searchTitle(e.target.value)}
+              InputProps={{
+                ...params.InputProps,
+                endAdornment: (
+                  <React.Fragment>
+                    {params.InputProps.endAdornment}
+                  </React.Fragment>
+                ),
+              }}
+            />
+          )}
+        />
       </Box>
     </Box>
   );
